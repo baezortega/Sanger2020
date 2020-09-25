@@ -1,0 +1,13 @@
+_Paper/
+BACKUP/
+data/
+.Rhistory
+._DStore
+output
+scripts
+1_Spectra_Old
+2_Signatures_Old
+12_Regression
+4_CopyNumber/old
+6_VariantFiltering/mouse_pipe
+6_VariantFiltering/strelka2
