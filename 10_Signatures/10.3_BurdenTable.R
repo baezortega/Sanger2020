@@ -79,7 +79,6 @@ for (species in unique(sample.info$SPECIES_NAME)) {
                                "SigA_Exposure" = exposures.final$sample$mean[sample.id, 1],
                                "SigB_Exposure" = exposures.final$sample$mean[sample.id, 2],
                                "SigC_Exposure" = exposures.final$sample$mean[sample.id, 3],
-                               "SigD_Exposure" = exposures.final$sample$mean[sample.id, 4],
                                "Callable_Genome_Bp" = sum(regions$width),
                                "CpG_Frequency" = as.numeric(dinuc.freqs["CG"])))
     }

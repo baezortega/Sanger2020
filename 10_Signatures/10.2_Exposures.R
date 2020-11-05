@@ -29,6 +29,7 @@ OUTPUT = list(
 
 cat("Loading data and packages...\n")
 suppressWarnings(library(sigfit))
+data("cosmic_signatures_v3")
 load(INPUT$DATA)
 cat("Loaded\n")
 
@@ -37,8 +38,27 @@ cat("Loaded\n")
 dir.create(OUTPUT$PDF.DIR, showWarnings=F)
 
 
-# DEFINITIVE SET OF SIGNATURES TO FIT: species, N=3
-signatures.final = signatures.all$species[[3]]
+## DEFINITIVE SET OF SIGNATURES TO FIT: species, N=3
+#signatures.final = signatures.all$species[[3]]
+
+# NEW DEFINITIVE SET OF SIGNATURES:
+# To avoid mixing of signatures 1 and 5, the definitive set of signatures is
+# obtained by fitting COSMIC SBS1 and extracting 2 signatures with the Fit-Ext model
+cat("\n\nEXTRACTING DEFINITIVE SIGNATURES",
+    "\n--------------------------------\n\n")
+ITER = 15000; WARMUP = 5000; SEED = 0xC0FFEE
+fitext.species.3 = fit_extract_signatures(counts.all$species,
+                                          convert_signatures(cosmic_signatures_v3[1, ],
+                                                             opportunities_from="human-genome"),
+                                          num_extra_sigs=2, opportunities=opps.all$species,
+                                          iter=ITER, warmup=WARMUP, seed=SEED)
+# Retrieve and reorder signatures
+sig.idx = c(1, 3, 2)
+signatures.final = retrieve_pars(fitext.species.3, "signatures")
+for (i in 1:length(signatures.final)) {
+    signatures.final[[i]] = signatures.final[[i]][sig.idx, ]
+    rownames(signatures.final[[i]]) = rownames(signatures.final[[i]])[sig.idx]
+}
 
 
 # Fit signatures using multinomial model with opportunities

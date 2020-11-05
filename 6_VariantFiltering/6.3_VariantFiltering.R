@@ -132,8 +132,8 @@ filt.paths = c(gsub("${AC36}", ac36.path,
                gsub("${SAMPLE}", sample.id, INPUT$MIN.COV.BED, fixed=T),
                gsub("${SAMPLE}", sample.id, INPUT$MAX.COV.BED, fixed=T),
                gsub("${SPECIES}", species, INPUT$N50.BED, fixed=T),
-               gsub(gsub("${AC36}", ac36.path,
-                         "${SPECIES}", species, INPUT$ENDS.BED, fixed=T), fixed=T))
+               gsub("${AC36}", ac36.path,
+                    gsub("${SPECIES}", species, INPUT$ENDS.BED, fixed=T), fixed=T))
 cnt.paths = paste0(INPUT$CNT.PREFIX, sample.id, "_In_", matched.samples, ".txt")
 spcs = ifelse(species %in% bam.paths$SPECIES, species, "default")
 bam.path = gsub("${SPECIES}", species,

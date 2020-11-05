@@ -11,3 +11,5 @@ scripts
 4_CopyNumber/old
 6_VariantFiltering/mouse_pipe
 6_VariantFiltering/strelka2
+6_VariantFiltering/colonies_blood
+6_VariantFiltering/zebrafish

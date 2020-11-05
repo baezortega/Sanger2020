@@ -2,7 +2,7 @@
 
 MEM=15000
 CPUS=1
-QUEUE=normal
+QUEUE=long
 
 CMD="Rscript 10.2_Exposures.R"
 
