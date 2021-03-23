@@ -196,8 +196,8 @@ if (!(species %in% SPECIES)) {
     # (code adapted from Inigo Martincorena, Science 2015 [call_targeted_copy_number.R])
     
     # Define two sets of bins:
-    #  (i) bins with coverage ≥15 in sample and matched normal, and ≥1 variant (for allele CN)
-    # (ii) bins with cov ≥15 in sample and normal, but with no variants (for total CN only)
+    #  (i) bins with coverage ≥10 in sample and matched normal, and ≥1 variant (for allele CN)
+    # (ii) bins with cov ≥10 in sample and normal, but with no variants (for total CN only)
     bin.idx = 1:nrow(bin.table) %in% snps.het$BIN
     set1.idx = bin.cov[[1]]$AdjCov >= MIN.COV & bin.cov[[2]]$AdjCov >= MIN.COV & bin.idx
     set2.idx = bin.cov[[1]]$AdjCov >= MIN.COV & bin.cov[[2]]$AdjCov >= MIN.COV & !bin.idx
@@ -247,7 +247,7 @@ if (!(species %in% SPECIES)) {
     cat("bb.theta =", bb.theta, "\n")
     
     
-    ## b. Negative-binomial model for the relative coverage
+    ## b. Negative binomial model for the relative coverage
     # Instead of read counts per gene, we use total coverage per 100-kb bin;
     # the expected coverage of a bin is calculated using the median sample coverage
     # and the median ratio between sample and matched normal coverage
